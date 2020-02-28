@@ -49,18 +49,19 @@ namespace Formation
                 _command.Parameters.AddWithValue("@user", username.Text);
                 _command.Parameters.AddWithValue("@pass", password.Password);
                 _reader = _command.ExecuteReader();
-                _reader.Close();
             }
-            _con.Close();
             if (_reader.HasRows)
             {
+                _reader.Close();
                 Main main = new Main(username.Text, _con);
                 main.Show();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect, dégage !");
+                MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect. Veuillez réessayer");
+                _reader.Close();
+                _con.Close();
             }
         }
     }

@@ -17,10 +17,10 @@ namespace Formation
         private DateTime _date;
         public DateTime Date { get => _date; set => _date = value; }
 
-        private Char _sexe;
-        public Char Sexe { get => _sexe; set => _sexe = value; }
+        private string _sexe;
+        public string Sexe { get => _sexe; set => _sexe = value; }
 
-        public Utilisateur(string nom, string prenom, DateTime date, char sexe)
+        public Utilisateur(string nom, string prenom, DateTime date, string sexe)
         {
             this._nom = nom ?? throw new ArgumentNullException(nameof(nom));
             this._prenom = prenom ?? throw new ArgumentNullException(nameof(prenom));

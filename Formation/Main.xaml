@@ -5,20 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Formation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Formation - Gestion des utilisateurs" Height="478.35" Width="850.4" WindowStartupLocation="CenterScreen" Icon="assets/img/logo.png">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="assets/img/background.png"/>
         </Grid.Background>
-        <Label x:Name="nomL" Content="Nom :*" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" Height="36" Width="120" Foreground="White"/>
-        <Label x:Name="prenomL" Content="Prenom :*" HorizontalAlignment="Left" Margin="10,144,0,0" VerticalAlignment="Top" Height="35" Width="120" Foreground="White"/>
-        <Label Content="Date de naissance :*" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,187,0,0" Height="35" Width="120" Foreground="White"/>
-        <Label x:Name="sexeL" Content="Sexe :*" HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top" Height="25" Width="70" Foreground="White"/>
-        <TextBox x:Name="nom" HorizontalAlignment="Left" Height="36" Margin="135,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
-        <TextBox x:Name="prenom" HorizontalAlignment="Left" Height="36" Margin="135,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
-        <RadioButton x:Name="homme" Content="Homme" HorizontalAlignment="Left" Margin="94,234,0,0" VerticalAlignment="Top" Height="21" Width="95" Foreground="White"/>
-        <RadioButton x:Name="femme" Content="Femme" HorizontalAlignment="Left" Margin="210,234,0,0" VerticalAlignment="Top" Height="21" Width="90" Foreground="White"/>
-        <Button x:Name="add" Content="Ajouter" HorizontalAlignment="Left" Height="34" Margin="20,260,0,0" VerticalAlignment="Top" Width="90" Click="add_Click">
+        <Label x:Name="nomL" Content="Nom :*" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" Height="39" Width="129" Foreground="White"/>
+        <Label x:Name="prenomL" Content="Prenom :*" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Height="38" Width="129" Foreground="White"/>
+        <Label Content="Date de naissance :*" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,194,0,0" Height="37" Width="129" Foreground="White"/>
+        <Label x:Name="sexeL" Content="Sexe :*" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top" Height="27" Width="75" Foreground="White"/>
+        <TextBox x:Name="nom" HorizontalAlignment="Left" Height="30" Margin="145,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="prenom" HorizontalAlignment="Left" Height="30" Margin="145,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+        <RadioButton x:Name="homme" Content="Homme" HorizontalAlignment="Left" Margin="101,244,0,0" VerticalAlignment="Top" Height="23" Width="102" Foreground="White"/>
+        <RadioButton x:Name="femme" Content="Femme" HorizontalAlignment="Left" Margin="225,244,0,0" VerticalAlignment="Top" Height="23" Width="97" Foreground="White"/>
+        <Button x:Name="add" Content="Ajouter" HorizontalAlignment="Left" Height="37" Margin="21,272,0,0" VerticalAlignment="Top" Width="97" Click="add_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
@@ -26,7 +26,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="modify" Content="Modifier" HorizontalAlignment="Left" Height="34" Margin="128,260,0,0" VerticalAlignment="Top" Width="90">
+        <Button x:Name="modify" Content="Modifier" HorizontalAlignment="Left" Height="37" Margin="137,272,0,0" VerticalAlignment="Top" Width="97">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
@@ -34,7 +34,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="delete" Content="Supprimer" HorizontalAlignment="Left" Height="34" Margin="232,260,0,0" VerticalAlignment="Top" Width="89">
+        <Button x:Name="delete" Content="Supprimer" HorizontalAlignment="Left" Height="37" Margin="249,272,0,0" VerticalAlignment="Top" Width="96">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
@@ -44,10 +44,13 @@
         </Button>
         <Label x:Name="listL" Content="Liste des utilisateurs :" HorizontalAlignment="Left" Height="29" Margin="465,91,0,0" VerticalAlignment="Top" Width="185" Foreground="White" FontSize="16"/>
         <Label x:Name="title" Content="Gestion des utilisateurs :" HorizontalAlignment="Left" Height="51" Margin="8,29,0,0" VerticalAlignment="Top" Width="361" FontSize="30" FontFamily="Roboto" Foreground="White"/>
-        <ListView x:Name="list" HorizontalAlignment="Left" Height="165" Margin="468,122,0,0" VerticalAlignment="Top" Width="316">
+        <ListView x:Name="list" HorizontalAlignment="Left" Height="172" Margin="468,122,0,0" VerticalAlignment="Top" Width="366">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Nom}"/>
+                    <GridViewColumn Header="Prenom" DisplayMemberBinding="{Binding Prenom}"/>
+                    <GridViewColumn Header="Date Naiss." DisplayMemberBinding="{Binding Date}"/>
+                    <GridViewColumn Header="Sexe" DisplayMemberBinding="{Binding Sexe}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -61,7 +64,23 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <DatePicker x:Name="date" HorizontalAlignment="Left" Margin="135,188,0,0" VerticalAlignment="Top" Width="186"/>
+        <DatePicker x:Name="date" HorizontalAlignment="Left" Margin="145,195,0,0" VerticalAlignment="Top" Width="200" Height="25"/>
+        <Button x:Name="exit" Content="Quitter l'application" HorizontalAlignment="Left" Height="32" Margin="137,360,0,0" VerticalAlignment="Top" Width="117" Click="exit_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF3597A4" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="deco" Content="Se déconnecter" HorizontalAlignment="Left" Height="32" Margin="21,360,0,0" VerticalAlignment="Top" Width="97" Click="deco_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF3597A4" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>

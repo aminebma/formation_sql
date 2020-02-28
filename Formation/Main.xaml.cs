@@ -26,26 +26,26 @@ namespace Formation
         private SqlConnection _con;
         private SqlCommand _command;
         private SqlDataReader _reader;
-        private List<Utilisateur> userList;
+        private List<Utilisateur> usersList;
         private string _query;
         
         public Main(string user, SqlConnection con)
         {
             _user = user;
+            usersList = new List<Utilisateur>();
             _con = con;
-            _query = "SELECT * FROM Utilisateurs";
-            _con.Open();
+            _query = "SELECT * FROM Utilisateur";
+            if(_con.State!= ConnectionState.Open) _con.Open();
             using (_command = new SqlCommand(_query, _con)) { 
                 _reader = _command.ExecuteReader();
-                userList = new List<Utilisateur>();
                 while (_reader.Read())
                 {
-                    userList.Add(
+                    usersList.Add(
                         new Utilisateur(
                             _reader[1].ToString(),
                             _reader[2].ToString(),
                             DateTime.Parse(_reader[3].ToString()),
-                            (Char)_reader[4]
+                            _reader[4].ToString()
                             )
                         );
                 }
@@ -53,8 +53,8 @@ namespace Formation
 
             }
             _con.Close();
-            //list.Items.Add();
             InitializeComponent();
+            foreach (Utilisateur u in usersList) list.Items.Add(u);
             currentUser.Text += " " + _user;
         }
 
@@ -72,14 +72,16 @@ namespace Formation
                 _command.ExecuteNonQuery();
             }
             _con.Close();
+            usersList.Add(user);
+            list.Items.Add(user);
         }
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
-            char selectedSexe;
+            string selectedSexe;
 
-            if ((bool)homme.IsChecked) selectedSexe = 'h';
-            else selectedSexe = 'f';
+            if ((bool)homme.IsChecked) selectedSexe = "h";
+            else selectedSexe = "f";
 
             Utilisateur u = new Utilisateur(nom.Text, prenom.Text, (DateTime)date.SelectedDate, selectedSexe);
             try
@@ -91,6 +93,19 @@ namespace Formation
             {
                 MessageBox.Show("Oups ! l'erreur suivante s'est produite :\n" + exc.ToString());
             }
+        }
+
+        private void deco_Click(object sender, RoutedEventArgs e)
+        {
+            Connexion connexion = new Connexion();
+            connexion.Show();
+            this.Close();
+        }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Bye Fellas ! ;D");
+            Application.Current.Shutdown();
         }
     }
 }

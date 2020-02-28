@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Formation"
         mc:Ignorable="d"
-        Title="Connexion" Height="450" Width="800">
+        Title="Formation - Connexion" Height="395.484" Width="447.137" Icon="assets/img/logo.png" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button x:Name="connect" Content="Confirmer" HorizontalAlignment="Left" Height="32" Margin="220,283,0,0" VerticalAlignment="Top" Width="152" Click="connect_Click">
+        <Button x:Name="connect" Content="Confirmer" HorizontalAlignment="Left" Height="32" Margin="52,271,0,0" VerticalAlignment="Top" Width="152" Click="connect_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
@@ -15,11 +15,11 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Label x:Name="usernameL" Content="Nom d'utilisateur :" HorizontalAlignment="Left" Height="39" Margin="219,188,0,0" VerticalAlignment="Top" Width="129"/>
-        <Label x:Name="passwordL" Content="Mot de passe :" HorizontalAlignment="Left" Margin="219,232,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="383,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
-        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="383,232,0,0" VerticalAlignment="Top" Width="168" Height="26"/>
-        <Button x:Name="exit" Content="Quitter" HorizontalAlignment="Left" Height="32" Margin="401,283,0,0" VerticalAlignment="Top" Width="153" Click="exit_Click">
+        <Label x:Name="usernameL" Content="Nom d'utilisateur :" HorizontalAlignment="Left" Height="39" Margin="51,176,0,0" VerticalAlignment="Top" Width="129"/>
+        <Label x:Name="passwordL" Content="Mot de passe :" HorizontalAlignment="Left" Margin="51,220,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="215,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
+        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="215,220,0,0" VerticalAlignment="Top" Width="168" Height="26"/>
+        <Button x:Name="exit" Content="Quitter" HorizontalAlignment="Left" Height="32" Margin="233,271,0,0" VerticalAlignment="Top" Width="153" Click="exit_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White"/>
@@ -27,7 +27,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Image HorizontalAlignment="Left" Height="129" Margin="311,24,0,0" VerticalAlignment="Top" Width="133" Source="assets/img/logo.png"/>
+        <Image HorizontalAlignment="Left" Height="129" Margin="143,12,0,0" VerticalAlignment="Top" Width="133" Source="assets/img/logo.png"/>
 
     </Grid>
 </Window>

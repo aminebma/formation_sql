@@ -120,11 +120,8 @@
   <ItemGroup>
     <Resource Include="assets\img\background.png" />
     <Resource Include="assets\img\logo.png" />
-    <Content Include="db-formation.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="db-formation.mdf" />
     <Content Include="db-formation_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>db-formation.mdf</DependentUpon>
     </Content>
   </ItemGroup>
