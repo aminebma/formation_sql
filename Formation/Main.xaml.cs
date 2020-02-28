@@ -26,13 +26,13 @@ namespace Formation
         private SqlConnection _con;
         private SqlCommand _command;
         private SqlDataReader _reader;
-        private List<Utilisateur> usersList;
+        private Utilisateur _selectedUser;
         private string _query;
         
         public Main(string user, SqlConnection con)
         {
+            InitializeComponent();
             _user = user;
-            usersList = new List<Utilisateur>();
             _con = con;
             _query = "SELECT * FROM Utilisateur";
             if(_con.State!= ConnectionState.Open) _con.Open();
@@ -40,7 +40,7 @@ namespace Formation
                 _reader = _command.ExecuteReader();
                 while (_reader.Read())
                 {
-                    usersList.Add(
+                    list.Items.Add(
                         new Utilisateur(
                             _reader[1].ToString(),
                             _reader[2].ToString(),
@@ -53,8 +53,6 @@ namespace Formation
 
             }
             _con.Close();
-            InitializeComponent();
-            foreach (Utilisateur u in usersList) list.Items.Add(u);
             currentUser.Text += " " + _user;
         }
 
@@ -72,8 +70,47 @@ namespace Formation
                 _command.ExecuteNonQuery();
             }
             _con.Close();
-            usersList.Add(user);
             list.Items.Add(user);
+        }
+
+        private void modifierUtilisateur(Utilisateur user)
+        {
+            _query = "UPDATE Utilisateur SET nom=@nomN, prenom=@prenomN, dateNaiss=@dateN, sexe=@sexeN" +
+                " WHERE nom=@nomA and prenom=@prenomA and dateNaiss=@dateA and sexe=@sexeA";
+            _con.Open();
+            using (_command = new SqlCommand(_query, _con))
+            {
+                _command.CommandType = CommandType.Text;
+                _command.Parameters.AddWithValue("@nomN", user.Nom);
+                _command.Parameters.AddWithValue("@prenomN", user.Prenom);
+                _command.Parameters.AddWithValue("@dateN", user.Date);
+                _command.Parameters.AddWithValue("@sexeN", user.Sexe);
+                _command.Parameters.AddWithValue("@nomA", _selectedUser.Nom);
+                _command.Parameters.AddWithValue("@prenomA", _selectedUser.Prenom);
+                _command.Parameters.AddWithValue("@dateA", _selectedUser.Date);
+                _command.Parameters.AddWithValue("@sexeA", _selectedUser.Sexe);
+                _command.ExecuteNonQuery();
+            }
+            _con.Close();
+            list.Items.RemoveAt(list.SelectedIndex);
+            list.Items.Add(user);
+        }
+
+        private void supprimerUtilisateur(Utilisateur user)
+        {
+            _query = "DELETE FROM Utilisateur WHERE nom=@nomU and prenom=@prenomU and dateNaiss=@dateN and sexe=@sexeU";
+            _con.Open();
+            using (_command = new SqlCommand(_query, _con))
+            {
+                _command.CommandType = CommandType.Text;
+                _command.Parameters.AddWithValue("@nomU", user.Nom);
+                _command.Parameters.AddWithValue("@prenomU", user.Prenom);
+                _command.Parameters.AddWithValue("@dateN", user.Date);
+                _command.Parameters.AddWithValue("@sexeU", user.Sexe);
+                _command.ExecuteNonQuery();
+            }
+            _con.Close();
+            list.Items.RemoveAt(list.SelectedIndex);
         }
 
         private void add_Click(object sender, RoutedEventArgs e)
@@ -91,6 +128,7 @@ namespace Formation
             }
             catch(Exception exc)
             {
+                if (_con.State == ConnectionState.Open) _con.Close();
                 MessageBox.Show("Oups ! l'erreur suivante s'est produite :\n" + exc.ToString());
             }
         }
@@ -106,6 +144,62 @@ namespace Formation
         {
             MessageBox.Show("Bye Fellas ! ;D");
             Application.Current.Shutdown();
+        }
+
+        private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try 
+            {
+                _selectedUser = (Utilisateur)list.SelectedItem;
+                nom.Text = _selectedUser.Nom;
+                prenom.Text = _selectedUser.Prenom;
+                date.SelectedDate = _selectedUser.Date;
+                if (_selectedUser.Sexe == "h") homme.IsChecked = true;
+                else femme.IsChecked = true;
+            }
+            catch
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void modify_Click(object sender, RoutedEventArgs e)
+        {
+            string selectedSexe;
+            if ((bool)homme.IsChecked) selectedSexe = "h";
+            else selectedSexe = "f";
+            if ((_selectedUser!=null) && (nom.Text != _selectedUser.Nom || prenom.Text != _selectedUser.Prenom
+                    || date.SelectedDate != _selectedUser.Date || selectedSexe != _selectedUser.Sexe))
+            {
+                _selectedUser.Nom = nom.Text;
+                _selectedUser.Prenom = prenom.Text;
+                _selectedUser.Date = (DateTime)date.SelectedDate;
+                _selectedUser.Sexe = selectedSexe;
+                try
+                {
+                    modifierUtilisateur(_selectedUser);
+                    MessageBox.Show("Modification de l'utilisateur effectuée avec succès !");
+                }
+                catch (Exception exc)
+                {
+                    if (_con.State == ConnectionState.Open) _con.Close();
+                    MessageBox.Show("Oups ! l'erreur suivante s'est produite :\n" + exc.ToString());
+                }
+            }
+        }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {         
+            try
+            {
+                supprimerUtilisateur(_selectedUser);
+                MessageBox.Show("Suppression de l'utilisateur effectuée avec succès !");
+            }
+            catch (Exception exc)
+            {
+                if (_con.State == ConnectionState.Open) _con.Close();
+                MessageBox.Show("Oups ! l'erreur suivante s'est produite :\n" + exc.ToString());
+            }
         }
     }
 }

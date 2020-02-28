@@ -26,7 +26,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="modify" Content="Modifier" HorizontalAlignment="Left" Height="37" Margin="137,272,0,0" VerticalAlignment="Top" Width="97">
+        <Button x:Name="modify" Content="Modifier" HorizontalAlignment="Left" Height="37" Margin="137,272,0,0" VerticalAlignment="Top" Width="97" Click="modify_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
@@ -34,7 +34,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="delete" Content="Supprimer" HorizontalAlignment="Left" Height="37" Margin="249,272,0,0" VerticalAlignment="Top" Width="96">
+        <Button x:Name="delete" Content="Supprimer" HorizontalAlignment="Left" Height="37" Margin="249,272,0,0" VerticalAlignment="Top" Width="96" Click="delete_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
@@ -44,7 +44,7 @@
         </Button>
         <Label x:Name="listL" Content="Liste des utilisateurs :" HorizontalAlignment="Left" Height="29" Margin="465,91,0,0" VerticalAlignment="Top" Width="185" Foreground="White" FontSize="16"/>
         <Label x:Name="title" Content="Gestion des utilisateurs :" HorizontalAlignment="Left" Height="51" Margin="8,29,0,0" VerticalAlignment="Top" Width="361" FontSize="30" FontFamily="Roboto" Foreground="White"/>
-        <ListView x:Name="list" HorizontalAlignment="Left" Height="172" Margin="468,122,0,0" VerticalAlignment="Top" Width="366">
+        <ListView x:Name="list" HorizontalAlignment="Left" Height="172" Margin="468,122,0,0" VerticalAlignment="Top" Width="366" SelectionChanged="list_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Nom}"/>
