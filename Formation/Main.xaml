@@ -1,0 +1,67 @@
+﻿<Window x:Class="Formation.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Formation"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="assets/img/background.png"/>
+        </Grid.Background>
+        <Label x:Name="nomL" Content="Nom :*" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" Height="36" Width="120" Foreground="White"/>
+        <Label x:Name="prenomL" Content="Prenom :*" HorizontalAlignment="Left" Margin="10,144,0,0" VerticalAlignment="Top" Height="35" Width="120" Foreground="White"/>
+        <Label Content="Date de naissance :*" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,187,0,0" Height="35" Width="120" Foreground="White"/>
+        <Label x:Name="sexeL" Content="Sexe :*" HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top" Height="25" Width="70" Foreground="White"/>
+        <TextBox x:Name="nom" HorizontalAlignment="Left" Height="36" Margin="135,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <TextBox x:Name="prenom" HorizontalAlignment="Left" Height="36" Margin="135,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <RadioButton x:Name="homme" Content="Homme" HorizontalAlignment="Left" Margin="94,234,0,0" VerticalAlignment="Top" Height="21" Width="95" Foreground="White"/>
+        <RadioButton x:Name="femme" Content="Femme" HorizontalAlignment="Left" Margin="210,234,0,0" VerticalAlignment="Top" Height="21" Width="90" Foreground="White"/>
+        <Button x:Name="add" Content="Ajouter" HorizontalAlignment="Left" Height="34" Margin="20,260,0,0" VerticalAlignment="Top" Width="90" Click="add_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FF3899A4" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="modify" Content="Modifier" HorizontalAlignment="Left" Height="34" Margin="128,260,0,0" VerticalAlignment="Top" Width="90">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FF3597A4" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="delete" Content="Supprimer" HorizontalAlignment="Left" Height="34" Margin="232,260,0,0" VerticalAlignment="Top" Width="89">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FF3597A4" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Label x:Name="listL" Content="Liste des utilisateurs :" HorizontalAlignment="Left" Height="29" Margin="465,91,0,0" VerticalAlignment="Top" Width="185" Foreground="White" FontSize="16"/>
+        <Label x:Name="title" Content="Gestion des utilisateurs :" HorizontalAlignment="Left" Height="51" Margin="8,29,0,0" VerticalAlignment="Top" Width="361" FontSize="30" FontFamily="Roboto" Foreground="White"/>
+        <ListView x:Name="list" HorizontalAlignment="Left" Height="165" Margin="468,122,0,0" VerticalAlignment="Top" Width="316">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock x:Name="currentUser" HorizontalAlignment="Left" Margin="514,23,0,0" TextWrapping="Wrap" Text="Connecté en tant que: " VerticalAlignment="Top" Width="217" Height="22" RenderTransformOrigin="0.5,0.5" Foreground="White" FontSize="14">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.047"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <DatePicker x:Name="date" HorizontalAlignment="Left" Margin="135,188,0,0" VerticalAlignment="Top" Width="186"/>
+
+    </Grid>
+</Window>
